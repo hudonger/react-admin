@@ -7,50 +7,42 @@ const routes = [
   {
     title: '首页',
     path: '/home',
-    icon: 'codepen'
+    icon: 'home'
   },
   {
-    title: '图标',
-    path: '/charts',
-    icon: 'codepen',
+    title: '异常页',
+    path: '/exception',
+    icon: 'warning',
     children: [
       {
-        title: '柱形图',
-        path: '/charts/bar'
+        title: '404',
+        path: '/exception/404'
       },
       {
-        title: '饼图',
-        path: '/charts/pie'
-      },
-      {
-        title: '折线图',
-        path: '/charts/line'
+        title: '500',
+        path: '/exception/500'
       },
     ]
   },
   {
-    title: '新闻',
-    path: '/news',
-    icon: 'codepen',
+    title: '个人页',
+    path: '/user',
+    icon: 'user',
     children: [
       {
-        title: '体育',
-        path: '/news/sports'
+        title: '个人中心',
+        path: '/user/center'
       },
       {
-        title: '财经',
-        path: '/news/money'
-      },
-      {
-        title: '科技',
-        path: '/news/science'
+        title: '个人设置',
+        path: '/user/setting'
       },
     ]
   },
   {
     title: '权限设置',
     path: '/permission',
-    icon: 'codepen'
+    icon: 'lock'
   }
 ]
 

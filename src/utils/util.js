@@ -36,21 +36,21 @@ export const formateDate = time => {
 }
 
 // 设置本地存储
-export const setStorage = (name, data) => {
+export const setStorage = (key, data) => {
   if (data == null || data === '') {
     alert('请存入有效值')
     return
   }
-  localStorage.setItem(name, JSON.stringify(data))
+  localStorage.setItem(key, JSON.stringify(data))
 }
 
 // 获取本地存储
-export const getStorage = name => {
-  const data = localStorage.getItem(name)
+export const getStorage = key => {
+  const data = localStorage.getItem(key)
   if (data !== null) return JSON.parse(data)
 }
 
 // 删除本地存储
-export const delStorage = name => {
-  localStorage.removeItem(name)
+export const delStorage = key => {
+  localStorage.removeItem(key)
 }

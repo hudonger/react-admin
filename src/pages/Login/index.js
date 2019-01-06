@@ -41,9 +41,9 @@ class Login extends Component {
                     message: '用户名不能为空!'
                   },
                   {
-                    min: 2,
-                    max: 11,
-                    message: '用户名长度2 ~ 11!'
+                    min: 4,
+                    max: 20,
+                    message: '用户名长度4 ~ 20!'
                   }
                 ],
               })(

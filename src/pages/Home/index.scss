@@ -1,0 +1,27 @@
+.home-page {
+  .card-list {
+    display: flex;
+    justify-content: space-between;
+    .card-item {
+      flex: 1;
+      margin: 0 10px;
+      .card-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    .card-item:first-child {
+      margin-left: 0;
+    }
+    .card-item:last-child {
+      margin-right: 0;
+    }
+  }
+  
+  .layout {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+}

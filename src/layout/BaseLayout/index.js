@@ -18,7 +18,7 @@ class BaseLayout extends Component {
         <SiderMenu />
         <Layout>
           <Header />
-          <Content style={{ margin: '24px', background: '#fff' }}>
+          <Content style={{ margin: '24px' }}>
             {this.props.children}
           </Content>
           <Footer />
