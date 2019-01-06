@@ -1,5 +1,10 @@
-import React, { Component } from 'react'
-import CountUp from 'countup'
+/*
+ * @Author: donger
+ * @Description: 数字渐变
+ */
+
+import React, { Component }   from 'react'
+import CountUp                from 'countup'
 
 class CountTo extends Component {
   initCounter () {

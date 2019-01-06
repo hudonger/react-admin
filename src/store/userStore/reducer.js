@@ -3,8 +3,8 @@
  * @Description: 用户 reducer 模块
  */
 
-import clone                        from 'clonedeep'
-import { getStorage, setStorage, delStorage }   from '../../utils/util';
+import clone                                    from 'clonedeep'
+import { getStorage, setStorage, delStorage }   from '@/utils/util';
 
 const userState = {
   userInfo: getStorage('userInfo')

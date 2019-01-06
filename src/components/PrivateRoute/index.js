@@ -5,7 +5,7 @@
 
 import React                              from 'react'
 import { Route, Redirect, withRouter }    from 'react-router-dom'
-import { getToken }                       from '../../utils/util'
+import { getToken }                       from '@/utils/util'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   if (getToken()) {

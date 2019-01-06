@@ -6,9 +6,9 @@
 import React, { Component }                       from 'react'
 import { connect }                                from 'react-redux'
 import { Form, Icon, Input, Button, Checkbox }    from 'antd'
-import UserService                                from '../../api/user'
-import { getToken, setToken }                     from '../../utils/util'
-import { saveUserInfo }                           from '../../store/userStore/actions'
+import UserService                                from '@/api/user'
+import { getToken, setToken }                     from '@/utils/util'
+import { saveUserInfo }                           from '@/store/userStore/actions'
 import './index.scss'
 
 const FormItem = Form.Item

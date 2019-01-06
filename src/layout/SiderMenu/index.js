@@ -7,7 +7,7 @@ import React, { Component }     from 'react'
 import { withRouter, Link }     from 'react-router-dom'
 import { connect }              from 'react-redux'
 import { Layout, Menu, Icon }   from 'antd'
-import routerConfig             from '../../config/router.config'
+import routerConfig             from '@/config/router.config'
 import './index.scss'
 
 const { Sider }   = Layout

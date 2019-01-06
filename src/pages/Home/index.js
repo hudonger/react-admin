@@ -5,10 +5,10 @@
 
 import React, { Component }   from 'react'
 import { Card, Icon }         from 'antd'
-import CountTo                from '../../components/CountTo';
-import ChartPie               from '../../components/Charts/pie'
-import ChartBar               from '../../components/Charts/bar'
-import ChartLine              from '../../components/Charts/line'
+import CountTo                from '@/components/CountTo';
+import ChartPie               from '@/components/Charts/pie'
+import ChartBar               from '@/components/Charts/bar'
+import ChartLine              from '@/components/Charts/line'
 import './index.scss'
 
 class Home extends Component {
