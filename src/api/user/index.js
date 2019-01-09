@@ -14,6 +14,15 @@ class UserService {
       data
     })
   }
+  
+  // 获取路由权限
+  static authRouter = data => {
+    return Http.request({
+      url: '/authRouter',
+      method: 'post',
+      data
+    })
+  }
 }
 
 export default UserService

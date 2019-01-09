@@ -3,9 +3,11 @@
  * @Description: 布局组件 reducer 模块
  */
 
-import clone from 'clonedeep'
+import clone          from 'clonedeep'
+import routerConfig   from '@/config/router.config'
 
 const layoutState = {
+  routerConfig,
   siderCollapsed: false
 }
 

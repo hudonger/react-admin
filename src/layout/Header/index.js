@@ -48,7 +48,6 @@ const mapDispatch = (dispatch, props) => ({
   handleLogout () {
     setToken('')
     dispatch(removeUserInfo())
-    console.log(props)
     props.history.push('/login')
   }
 })

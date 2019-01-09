@@ -7,20 +7,33 @@ import React, { Component }     from 'react'
 import { withRouter, Link }     from 'react-router-dom'
 import { connect }              from 'react-redux'
 import { Layout, Menu, Icon }   from 'antd'
-import routerConfig             from '@/config/router.config'
+import clone                    from 'clonedeep'
+import UserService              from '@/api/user'
+import { getToken }             from '@/utils/util'
 import './index.scss'
 
 const { Sider }   = Layout
 const SubMenu     = Menu.SubMenu
 
+const getAccessRouter = (router, rules) => {
+  return router.filter(item => {
+    if (rules[item.name]) {
+      if (item.children) item.children = getAccessRouter(item.children, rules)
+      return true
+    } else {
+      return false
+    }
+  })
+}
+
 class SiderMenu extends Component {
   state = {
     openKeys: []
-  };
+  }
   
-  rootSubmenuKeys = routerConfig.map(item => item.path)
+  rootSubmenuKeys = this.props.routerConfig.map(item => item.path)
   
-  onOpenChange = (openKeys) => {
+  onOpenChange = openKeys => {
     const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
     if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
       this.setState({ openKeys })
@@ -52,8 +65,28 @@ class SiderMenu extends Component {
     })
   }
 
+  // 校验菜单
+  authMenu () {
+    UserService.authRouter({ token: getToken() }).then(rules => {
+      if (Object.entries(rules).every(item => item[1])) {
+        this.initMenu(this.props.routerConfig)
+      } else {
+        const routerList = getAccessRouter(clone(this.props.routerConfig), rules)
+        this.initMenu(routerList)
+      }
+    })
+  }
+
+  // 初始化菜单
+  initMenu (router) {
+    const menuTree = this.renderMenu(router)
+    this.setState({
+      menuTree
+    })
+  }
+
   // 初始展开的 SubMenu 菜单项
-  handleSubMenu () {
+  initOpenMenu () {
     const pathname = this.props.location.pathname
     const index = pathname.lastIndexOf('/')
     this.setState({
@@ -62,12 +95,8 @@ class SiderMenu extends Component {
   }
 
   componentWillMount () {
-    const menuTree = this.renderMenu(routerConfig)
-    this.handleSubMenu()
-
-    this.setState({
-      menuTree
-    })
+    this.authMenu()
+    this.initOpenMenu()
   }
 
   render () {
@@ -86,9 +115,10 @@ class SiderMenu extends Component {
         <Menu
           className="sider-menu"
           mode="inline"
-          defaultSelectedKeys={[this.props.location.pathname]}
-          openKeys={this.state.openKeys}
-          onOpenChange={this.onOpenChange}
+          defaultSelectedKeys={ [this.props.location.pathname] }
+          // defaultOpenKeys={ this.state.openKeys }
+          openKeys={ this.state.openKeys }
+          onOpenChange={ this.onOpenChange }
           theme="dark"
         >
           {this.state.menuTree}
@@ -99,7 +129,8 @@ class SiderMenu extends Component {
 }
 
 const mapState = state => ({
-  collapsed: state.layout.siderCollapsed
+  collapsed: state.layout.siderCollapsed,
+  routerConfig: state.layout.routerConfig
 })
 
 export default connect(mapState)(withRouter(SiderMenu))

@@ -5,36 +5,25 @@
 
 import React, { Component }   from 'react'
 import { Card, Icon }         from 'antd'
-import CountTo                from '@/components/CountTo';
+import CountTo                from '@/components/CountTo'
 import ChartPie               from '@/components/Charts/pie'
 import ChartBar               from '@/components/Charts/bar'
 import ChartLine              from '@/components/Charts/line'
+import HomeService            from '@/api/home'
 import './index.scss'
 
 class Home extends Component {
   state = {
-    pieData: [
-      {value: 335, name: '直接访问'},
-      {value: 310, name: '邮件营销'},
-      {value: 234, name: '联盟广告'},
-      {value: 135, name: '视频广告'},
-      {value: 1548, name: '搜索引擎'}
-    ],
-    barData: {
-      Mon: 13253,
-      Tue: 34235,
-      Wed: 26321,
-      Thu: 12340,
-      Fri: 24643,
-      Sat: 1322,
-      Sun: 1324
-    },
-    cardData: [
-      { id: 10001,title: '总销售额', count: 126560, color: '#2d8cf0', up: true },
-      { id: 10002,title: '支付笔数', count: 6560, color: '#9a66e4', up: true },
-      { id: 10003,title: '访问量', count: 8080, color: '#19be6b', up: true },
-      { id: 10004,title: '新增用户', count: 602, color: '#e46cbb', up: false }
-    ]
+    loaded: false
+  }
+
+  componentDidMount () {
+    HomeService.getPageInfo().then(res => {
+      this.setState({
+        ...res,
+        loaded: true
+      })
+    })
   }
 
   initCardInfo () {
@@ -60,7 +49,7 @@ class Home extends Component {
   }
 
   render () {
-    return (
+    return this.state.loaded && (
       <div className="home-page">
         <div className="card-list">
           { this.initCardInfo() }

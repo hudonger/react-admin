@@ -5,7 +5,8 @@
 
 import axios          from 'axios'
 import { message }    from 'antd'
-import config         from '../config'
+import config         from '@/config'
+import { getToken }   from './util'
 
 class Http {
   constructor (baseUrl = config.baseURL) {
@@ -24,6 +25,7 @@ class Http {
   interceptors (instance) {
     // 请求拦截
     instance.interceptors.request.use(config => {
+      config.headers['Authorization'] = getToken()
       return config
     }, err => {
       return Promise.reject(err)
@@ -32,10 +34,11 @@ class Http {
     // 响应拦截
     instance.interceptors.response.use(response => {
       const { data } = response
-      if (data.code === 0) {
+      if (data.code === 1) {
         return data.data
       } else {
-        message.error('数据请求失败')
+        message.error(data.msg)
+        return Promise.reject(data.msg)
       }
     }, err => {
       return Promise.reject(err)

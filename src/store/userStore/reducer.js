@@ -4,7 +4,7 @@
  */
 
 import clone                                    from 'clonedeep'
-import { getStorage, setStorage, delStorage }   from '@/utils/util';
+import { getStorage, setStorage, delStorage }   from '@/utils/util'
 
 const userState = {
   userInfo: getStorage('userInfo')

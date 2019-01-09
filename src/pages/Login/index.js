@@ -6,9 +6,8 @@
 import React, { Component }                       from 'react'
 import { connect }                                from 'react-redux'
 import { Form, Icon, Input, Button, Checkbox }    from 'antd'
-import UserService                                from '@/api/user'
-import { getToken, setToken }                     from '@/utils/util'
-import { saveUserInfo }                           from '@/store/userStore/actions'
+import { getToken }                               from '@/utils/util'
+import { getUserInfo }                            from '@/store/userStore/actions'
 import './index.scss'
 
 const FormItem = Form.Item
@@ -83,14 +82,14 @@ const mapDispatch = (dispatch, props) => ({
 
     props.form.validateFields((err, values) => {
       if (!err) {
-        UserService.login({
-          username: values.username,
-          password: values.password
-        }).then(res => {
-          setToken(res.id)
-          dispatch(saveUserInfo(res))
-          props.history.push('/home')
-        })
+        const action = getUserInfo(
+          values.username,
+          values.password,
+          () => {
+            props.history.push('/home')
+          }
+        )
+        dispatch(action)
       }
     })
   }

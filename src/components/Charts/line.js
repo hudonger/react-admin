@@ -11,7 +11,7 @@ echarts.registerTheme('theme', theme)
 
 class Line extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.dom = React.createRef()
     this.el = null
   }

@@ -10,26 +10,32 @@ import store                                      from './store'
 import BaseLayout                                 from './layout/BaseLayout'
 import Login                                      from './pages/Login'
 import Home                                       from './pages/Home'
+import ErrorPage                                  from './pages/Error'
+import UserCenter                                 from './pages/User/center'
 import Permission                                 from './pages/Permission'
 import './style/base.scss'
 
+const Layout = () => (
+  <BaseLayout>
+    <Switch>
+      <Route path="/home" component={ Home } />
+      <Route path="/exception/404" component={ ErrorPage } />
+      <Route path="/exception/500" component={ ErrorPage } />
+      <Route path="/user/center" component={ UserCenter } />
+      <Route path="/permission" component={ Permission } />
+      <Redirect to="/exception/404" />
+    </Switch>
+  </BaseLayout>
+)
+
 class App extends Component {
   render () {
-    const Layout = (
-      <BaseLayout>
-        <Switch>
-          <PrivateRoute path="/home" component={Home}/>
-          <PrivateRoute path="/Permission" component={Permission}/>
-          <Redirect to="/home" />
-        </Switch>
-      </BaseLayout>
-    )
     return (
-      <Provider store={store}>
+      <Provider store={ store }>
         <HashRouter>
           <Switch>
-            <Route path="/login" component={Login}/>
-            <Route path="/" render={() => Layout}/>
+            <Route path="/login" component={ Login } />
+            <PrivateRoute path="/" component={ Layout } />
           </Switch>
         </HashRouter>
       </Provider>
