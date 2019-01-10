@@ -12,6 +12,7 @@ import Login                                      from './pages/Login'
 import Home                                       from './pages/Home'
 import ErrorPage                                  from './pages/Error'
 import UserCenter                                 from './pages/User/center'
+import UserSetting                                from './pages/User/setting'
 import Permission                                 from './pages/Permission'
 import './style/base.scss'
 
@@ -22,6 +23,7 @@ const Layout = () => (
       <Route path="/exception/404" component={ ErrorPage } />
       <Route path="/exception/500" component={ ErrorPage } />
       <Route path="/user/center" component={ UserCenter } />
+      <Route path="/user/setting" component={ UserSetting } />
       <Route path="/permission" component={ Permission } />
       <Redirect to="/exception/404" />
     </Switch>
@@ -31,7 +33,7 @@ const Layout = () => (
 class App extends Component {
   render () {
     return (
-      <Provider store={ store }>
+      <Provider store={store}>
         <HashRouter>
           <Switch>
             <Route path="/login" component={ Login } />

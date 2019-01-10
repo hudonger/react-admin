@@ -10,7 +10,7 @@ import { withRouter }           from 'react-router-dom'
 import { changeMenuState }      from '@/store/layoutStore/actions'
 import { removeUserInfo }       from '@/store/userStore/actions'
 import { setToken }             from '@/utils/util'
-import User                     from './components/user';
+import User                     from './components/user'
 import './index.scss'
 
 const { Header } = Layout

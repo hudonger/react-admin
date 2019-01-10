@@ -33,6 +33,7 @@ class SiderMenu extends Component {
   
   rootSubmenuKeys = this.props.routerConfig.map(item => item.path)
   
+  // 切换submenu
   onOpenChange = openKeys => {
     const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
     if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
@@ -116,9 +117,9 @@ class SiderMenu extends Component {
           className="sider-menu"
           mode="inline"
           defaultSelectedKeys={ [this.props.location.pathname] }
-          // defaultOpenKeys={ this.state.openKeys }
-          openKeys={ this.state.openKeys }
-          onOpenChange={ this.onOpenChange }
+          defaultOpenKeys={ this.state.openKeys }
+          // openKeys={ this.state.openKeys }
+          // onOpenChange={ this.onOpenChange }
           theme="dark"
         >
           {this.state.menuTree}
