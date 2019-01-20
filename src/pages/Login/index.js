@@ -46,14 +46,14 @@ class Login extends Component {
                   }
                 ],
               })(
-                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="admin" />
               )}
             </FormItem>
             <FormItem>
               {form.getFieldDecorator('password', {
                 rules: [{ required: true, message: '密码不能为空!' }],
               })(
-                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="admin" />
               )}
             </FormItem>
             <FormItem>
